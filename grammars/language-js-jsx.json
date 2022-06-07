@@ -2328,7 +2328,7 @@
     "literal-module-as": {
       "match": "\\s*+(?:(\\*)|(\\bdefault\\b))?\\s*+(\\bas\\b)\\s*+(?:(\\*)|(\\bdefault\\b))?",
       "captures": {
-        "1": { "name": "keyword.operator.module.all.js" },
+        "1": { "name": "variable.operator.module.all.js" },
         "2": { "name": "keyword.control.module.js" },
         "3": { "name": "keyword.control.module.reference.js" },
         "4": { "name": "keyword.operator.module.all.js" },
