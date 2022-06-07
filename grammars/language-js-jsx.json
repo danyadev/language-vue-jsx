@@ -1543,7 +1543,7 @@
           }
         },
         {
-          "match": "(?<!\\.)\\s*+\\b(document|window)\\b",
+          "match": "(?<!\\.)\\s*+\\b(document|window|navigator|performance|location|localStorage|history)\\b",
           "captures": {
             "1": { "name": "support.type.object.dom.js" }
           }
@@ -2176,7 +2176,7 @@
         {
           "name": "string.regexp.js",
           "begin": "(?<=^|\\.|\\(|,|{|}|\\[|;|,|<|>|<=|>=|==|!=|===|!==|\\+|-|\\*|%|\\+\\+|--|<<|>>|>>>|&|\\||\\^|!|~|&&|\\|\\||\\?|:|=|\\+=|-=|\\*=|%=|<<=|>>=|>>>=|&=|\\|=|\\^=|/|/=|\\Wnew|\\Wdelete|\\Wvoid|\\Wtypeof|\\Winstanceof|\\Win|\\Wdo|\\Wreturn|\\Wcase|\\Wthrow|^new|^delete|^void|^typeof|^instanceof|^in|^do|^return|^case|^throw)\\s*+(/)(?!\\*|/)(?=.*/[gimuy]*\\s*($|[,;)}\\]]|\\.[$_A-Za-z]))",
-          "end": "(/)([gimyu]*)",
+          "end": "(/)([gimyus]*)",
           "beginCaptures": {
             "1": { "name": "punctuation.definition.string.begin.js" }
           },
