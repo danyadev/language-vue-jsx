@@ -1475,13 +1475,12 @@
     "literal-language-constant": {
       "patterns": [
         {
-          "match": "(?<!\\.)\\s*+\\b((true)|(false)|(null)|(undefined)|(NaN))\\b",
+          "match": "(?<!\\.)\\s*+\\b((true)|(false)|(null)|(undefined|NaN|Infinity))\\b",
           "captures": {
             "2": { "name": "constant.language.boolean.true.js" },
             "3": { "name": "constant.language.boolean.false.js" },
             "4": { "name": "constant.language.null.js" },
-            "5": { "name": "constant.language.undefined.js" },
-            "6": { "name": "constant.language.nan.js" }
+            "5": { "name": "constant.language.js" }
           }
         }
       ]
@@ -1489,37 +1488,11 @@
     "support": {
       "patterns": [
         {
-          "begin": "\\s*+\\b(WeakSet|WeakMap|URIError|Uint8ClampedArray|Uint8Array|Uint32Array|Uint16Array|TypeError|TypedArray|SyntaxError|Symbol|String|SharedArrayBuffer|Set|RegExp|Reflect|ReferenceError|RangeError|Proxy|Promise|Object|Number|NaN|Math|Map|JSON|InternalError|Int8Array|Int32Array|Int16Array|Infinity|GeneratorFunction|Generator|Function|Float64Array|Float32Array|EvalError|Error|Date|DataView|Boolean|Atomics|ArrayBuffer|Array)\\b",
+          "begin": "\\s*+\\b(WeakSet|WeakMap|URIError|Uint8ClampedArray|Uint8Array|Uint32Array|Uint16Array|TypeError|TypedArray|SyntaxError|Symbol|String|SharedArrayBuffer|Set|RegExp|Reflect|ReferenceError|RangeError|Proxy|Promise|Object|Number|Math|Map|JSON|InternalError|Int8Array|Int32Array|Int16Array|GeneratorFunction|Generator|Function|Float64Array|Float32Array|EvalError|Error|Date|DataView|Boolean|Atomics|ArrayBuffer|Array)\\b",
           "end": "(?=.)",
           "applyEndPatternLast": 1,
           "beginCaptures": {
             "1": { "name": "support.class.builtin.js" }
-          },
-          "patterns": [
-            { "include": "#round-brackets" }
-          ]
-        },
-        {
-          "begin": "\\s*+\\b((SIMD)((\\.)(Uint8x16|Uint32x4|Uint16x8|Int8x16|Int32x4|Int16x8|Float64x2|Float32x4|Bool8x16|Bool64x2|Bool32x4|Bool16x8))?)\\b",
-          "end": "(?=.)",
-          "applyEndPatternLast": 1,
-          "beginCaptures": {
-            "2": { "name": "support.class.builtin.js" },
-            "4": { "name": "meta.delimiter.property.period.js"},
-            "5": { "name": "support.class.builtin.js" }
-          },
-          "patterns": [
-            { "include": "#round-brackets" }
-          ]
-        },
-        {
-          "begin": "\\s*+\\b((Intl)((\\.)(NumberFormat|DateTimeFormat|Collator))?)\\b",
-          "end": "(?=.)",
-          "applyEndPatternLast": 1,
-          "beginCaptures": {
-            "2": { "name": "support.class.builtin.js" },
-            "4": { "name": "meta.delimiter.property.period.js"},
-            "5": { "name": "support.class.builtin.js" }
           },
           "patterns": [
             { "include": "#round-brackets" }
@@ -1567,13 +1540,7 @@
         {
           "match": "(?<!\\.)\\s*+\\b(document|window|navigator|performance|location|localStorage|history)\\b",
           "captures": {
-            "1": { "name": "support.type.object.dom.js" }
-          }
-        },
-        {
-          "match": "\\s*+\\b(ELEMENT_NODE|ATTRIBUTE_NODE|TEXT_NODE|CDATA_SECTION_NODE|ENTITY_REFERENCE_NODE|ENTITY_NODE|PROCESSING_INSTRUCTION_NODE|COMMENT_NODE|DOCUMENT_NODE|DOCUMENT_TYPE_NODE|DOCUMENT_FRAGMENT_NODE|NOTATION_NODE|INDEX_SIZE_ERR|DOMSTRING_SIZE_ERR|HIERARCHY_REQUEST_ERR|WRONG_DOCUMENT_ERR|INVALID_CHARACTER_ERR|NO_DATA_ALLOWED_ERR|NO_MODIFICATION_ALLOWED_ERR|NOT_FOUND_ERR|NOT_SUPPORTED_ERR|INUSE_ATTRIBUTE_ERR)\\b",
-          "captures": {
-            "1": { "name": "support.constant.dom.js" }
+            "1": { "name": "support.variable.dom.js" }
           }
         },
         {
@@ -1581,7 +1548,7 @@
           "end": "(?=.)",
           "applyEndPatternLast": 1,
           "beginCaptures": {
-            "1": { "name": "support.type.object.console.js" },
+            "1": { "name": "entity.name.type.object.console.js" },
             "2": { "name": "meta.delimiter.property.period.js" },
             "3": { "name": "support.function.console.js" }
           },
@@ -1592,48 +1559,32 @@
         {
           "match": "(?<!\\.)\\s*+\\b(process)(?:(\\.)(stdout|stderr|stdin|argv|execPath|execArgv|env|exitCode|version|versions|config|pid|title|arch|platform|mainModule))?\\b",
           "captures": {
-            "1": { "name": "support.type.object.process.js" },
+            "1": { "name": "support.variable.process.js" },
             "2": { "name": "meta.delimiter.property.period.js" },
             "3": { "name": "support.type.object.process.js" }
           }
         },
         {
-          "begin": "(?<!\\.)\\s*+\\b(process)(?:(\\.)(abort|chdir|cwd|exit|getgid|setgid|getuid|setuid|setgroups|getgroups|initgroups|kill|memoryUsage|nextTick|umask|uptime|hrtime))?\\b",
-          "end": "(?=.)",
-          "applyEndPatternLast": 1,
-          "beginCaptures": {
-            "1": { "name": "support.type.object.process.js" },
-            "2": { "name": "meta.delimiter.property.period.js" },
-            "3": { "name": "support.function.process.js" }
-          },
-          "patterns": [
-            { "include": "#round-brackets" }
-          ]
-        },
-        {
-          "match": "(((?<!\\.)\\s*+\\bmodule\\.((?<!\\,)exports|id|require|parent|filename|loaded|children)|exports))\\b",
+          "match": "(?<!\\.)\\s*+\\b(process)(?:(\\.)(abort|chdir|cwd|exit|getgid|setgid|getuid|setuid|setgroups|getgroups|initgroups|kill|memoryUsage|nextTick|umask|uptime|hrtime))?\\b",
           "captures": {
-            "1": { "name": "support.type.object.module.js" },
+            "1": { "name": "support.variable.process.js" },
             "2": { "name": "meta.delimiter.property.period.js" },
-            "3": { "name": "support.type.object.module.js" }
+            "3": { "name": "support.type.object.process.js", "comment": "actually function token" }
           }
         },
         {
-          "match": "(?<!\\.)\\s*+\\b(global|GLOBAL|root|__dirname|__filename)\\b",
+          "match": "(?<!\\.)\\s*+\\b(module)(?:(\\.)(exports|id|require|parent|filename|loaded|children))?\\b",
           "captures": {
-            "1": { "name": "support.type.object.node.js" }
+            "1": { "name": "support.variable.object.module.js" },
+            "2": { "name": "meta.delimiter.property.period.js" },
+            "3": { "name": "support.variable.object.module.js" }
           }
         },
         {
-          "begin": "\\s*+\\b(Buffer|EventEmitter|Server|Pipe|Socket|REPLServer|ReadStream|WriteStream|Stream|Inflate|Deflate|InflateRaw|DeflateRaw|GZip|GUnzip|Unzip|Zip)\\b",
-          "end": "(?=.)",
-          "applyEndPatternLast": 1,
-          "beginCaptures": {
-            "1": { "name": "support.class.node.js" }
-          },
-          "patterns": [
-            { "include": "#round-brackets" }
-          ]
+          "match": "(?<!\\.)\\s*+\\b(global|GLOBAL|exports|__dirname|__filename)\\b",
+          "captures": {
+            "1": { "name": "support.variable.object.node.js" }
+          }
         },
         {
           "contentName": "meta.tag.mustache.js",
