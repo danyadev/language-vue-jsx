@@ -1386,7 +1386,7 @@
         { "include": "#comments" },
         { "include": "#literal-keywords" },
         {
-          "match": "(?<!\\.)\\s*+(\\bnew\\b)\\s*+((\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)\\s*+(\\?\\.)?(\\()\\s*+(\\)))",
+          "match": "(?<!\\.)\\s*+(\\bnew\\b)\\s*+((\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}\\.]|\\\\u\\h{4}|\\\\u{\\h+})*+)\\s*(\\?\\.)?\\s*(\\(?)\\s*(\\)?))",
           "captures": {
             "1": { "name": "keyword.operator.new.js" },
             "2": { "name": "meta.function-call.without-arguments.js" },
@@ -1398,7 +1398,7 @@
           }
         },
         {
-          "begin": "(?<!\\.)\\s*+(\\bnew\\b)\\s*+((\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)\\s*+(\\?\\.)?(?=\\())",
+          "begin": "(?<!\\.)\\s*+(\\bnew\\b)\\s*+((\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}\\.]|\\\\u\\h{4}|\\\\u{\\h+})*+)\\s*+(\\?\\.)?\\s*(?=\\())",
           "end": "(?=.)",
           "applyEndPatternLast": 1,
           "beginCaptures": {
@@ -1488,7 +1488,7 @@
     "support": {
       "patterns": [
         {
-          "begin": "\\s*+\\b(WeakSet|WeakMap|URIError|Uint8ClampedArray|Uint8Array|Uint32Array|Uint16Array|TypeError|TypedArray|SyntaxError|Symbol|String|SharedArrayBuffer|Set|RegExp|Reflect|ReferenceError|RangeError|Proxy|Promise|Object|Number|Math|Map|JSON|InternalError|Int8Array|Int32Array|Int16Array|GeneratorFunction|Generator|Function|Float64Array|Float32Array|EvalError|Error|Date|DataView|Boolean|Atomics|ArrayBuffer|Array)\\b",
+          "begin": "\\s*+\\b(WeakSet|WeakMap|URIError|Uint8ClampedArray|Uint8Array|Uint32Array|Uint16Array|TypeError|TypedArray|SyntaxError|Symbol|String|SharedArrayBuffer|Set|RegExp|Reflect|ReferenceError|RangeError|Proxy|Promise|Object|Number|Math|Map|JSON|InternalError|Int8Array|Int32Array|Int16Array|GeneratorFunction|Generator|Function|Float64Array|Float32Array|EvalError|Error|Date|DataView|Boolean|Atomics|ArrayBuffer|Array|Intl)\\b",
           "end": "(?=.)",
           "applyEndPatternLast": 1,
           "beginCaptures": {
@@ -1585,6 +1585,17 @@
           "captures": {
             "1": { "name": "support.variable.object.node.js" }
           }
+        },
+        {
+          "begin": "\\s*+\\b(Buffer|EventEmitter|Server|Pipe|Socket|REPLServer|ReadStream|WriteStream|Stream|Inflate|Deflate|InflateRaw|DeflateRaw|GZip|GUnzip|Unzip|Zip)\\b",
+          "end": "(?=.)",
+          "applyEndPatternLast": 1,
+          "beginCaptures": {
+            "1": { "name": "support.class.node.js" }
+          },
+          "patterns": [
+            { "include": "#round-brackets" }
+          ]
         },
         {
           "contentName": "meta.tag.mustache.js",
@@ -2363,7 +2374,6 @@
         },
         {
           "comment": "e.g. Class.property",
-          "name": "meta.property.class.js",
           "match": "\\s*+(\\#?)\\b((?:[$\\p{Lu}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)\\s*+(?:(\\?\\.)|(\\.))\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)",
           "captures": {
             "1": { "name": "keyword.operator.private.js"},
