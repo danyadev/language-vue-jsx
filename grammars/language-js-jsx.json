@@ -2273,7 +2273,7 @@
               "match": "\\s*\\*"
             },
             { "include": "#literal-module-brackets" },
-            { "include": "#literal-variable" },
+            { "include": "#literal-module-variable" },
             { "include": "#comments" },
             { "include": "#literal-comma"}
           ]
@@ -2334,7 +2334,7 @@
         "5": { "name": "keyword.control.module.js" }
       }
     },
-    "literal-module-brackets":{
+    "literal-module-brackets": {
       "patterns": [
         {
           "begin": "\\s*+(?:({)|(\\[))",
@@ -2355,7 +2355,7 @@
             { "include": "#literal-module-typeof" },
             { "include": "#literal-module-as" },
             { "include": "#literal-module-brackets" },
-            { "include": "#literal-variable" },
+            { "include": "#literal-module-variable" },
             { "include": "#literal-string" },
             { "include": "#comments" },
             { "include": "#literal-comma"}
@@ -2421,11 +2421,17 @@
         {
           "match": "\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)",
           "captures": {
-            "1": { "name": "keyword.operator.private.js"},
-            "2": { "name": "variable.other.readwrite.js"}
+            "1": { "name": "keyword.operator.private.js"}
           }
         }
       ]
+    },
+    "literal-module-variable": {
+      "match": "\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)",
+      "captures": {
+        "1": { "name": "keyword.operator.private.js"},
+        "2": { "name": "variable.other.property.js" }
+      }
     },
     "literal-variable-flowtype": {
       "patterns": [
