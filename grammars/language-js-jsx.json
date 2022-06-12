@@ -859,6 +859,9 @@
           "beginCaptures": {
             "1": { "name": "storage.type.const.js" }
           },
+          "endCaptures": {
+            "3": { "name": "keyword.operator.assignment.js" }
+          },
           "patterns": [
             {
               "match": "([$_a-zA-Z][$_a-zA-Z0-9]*)\\s*(:)\\s*([$_a-zA-Z][$_a-zA-Z0-9]*)?",
@@ -893,9 +896,7 @@
               "match": "\\[|\\]",
               "name": "meta.brace.square.js"
             },
-            {
-              "include": "#comments"
-            }
+            { "include": "#comments" }
           ]
         }
       ]
