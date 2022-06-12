@@ -2219,17 +2219,17 @@
       "patterns": [
         {
           "name": "string.regexp.js",
-          "begin": "(?<=^|\\.|\\(|,|{|}|\\[|;|,|<|>|<=|>=|==|!=|===|!==|\\+|-|\\*|%|\\+\\+|--|<<|>>|>>>|&|\\||\\^|!|~|&&|\\|\\||\\?|:|=|\\+=|-=|\\*=|%=|<<=|>>=|>>>=|&=|\\|=|\\^=|/|/=|\\Wnew|\\Wdelete|\\Wvoid|\\Wtypeof|\\Winstanceof|\\Win|\\Wdo|\\Wreturn|\\Wcase|\\Wthrow|^new|^delete|^void|^typeof|^instanceof|^in|^do|^return|^case|^throw)\\s*+(/)(?!\\*|/)(?=.*/[gimuy]*\\s*($|[,;)}\\]]|\\.[$_A-Za-z]))",
+          "begin": "(?<=[\\[{=(?:+*,!~-]|^|return|=>|&&|\\|\\|)\\s*(/)(?![/*+?])(?=.*/)",
           "end": "(/)([gimyus]*)",
           "beginCaptures": {
             "1": { "name": "punctuation.definition.string.begin.js" }
           },
           "endCaptures": {
             "1": { "name": "punctuation.definition.string.end.js" },
-            "2": { "name": "keyword.other.js" }
+            "2": { "name": "meta.flag.regexp" }
           },
           "patterns": [
-            { "include": "source.regexp.babel" }
+            { "include": "source.js.regexp" }
           ]
         }
       ]
