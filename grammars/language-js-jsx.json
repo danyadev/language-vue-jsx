@@ -1177,10 +1177,10 @@
       "begin": "(?<!\\\\)(\\${)",
       "end": "}",
       "beginCaptures": {
-        "1": { "name": "punctuation.quasi.element.begin.js" }
+        "1": { "name": "punctuation.section.embedded.begin.js" }
       },
       "endCaptures": {
-        "0": { "name": "punctuation.quasi.element.end.js" }
+        "0": { "name": "punctuation.section.embedded.end.js" }
       },
       "patterns": [
         { "include": "#expression" }
@@ -3555,7 +3555,7 @@
       "begin": "(?:(?:^|(?<=,|{))\\s*\\b((template))\\b\\s*(:)\\s*(`))",
       "end": "\\s*(`)",
       "beginCaptures": {
-        "1": { "name": "constant.other.object.key.js" },
+        "1": { "name": "text" },
         "2": { "name": "text" },
         "3": { "name": "keyword.operator.assignment.js"},
         "4": { "name": "punctuation.definition.quasi.begin.js" }
@@ -3569,10 +3569,10 @@
           "begin": "(?<!\\\\)\\${",
           "end": "\\s*}",
           "beginCaptures": {
-            "0": { "name": "punctuation.quasi.element.begin.js" }
+            "0": { "name": "punctuation.section.embedded.begin.js" }
           },
           "endCaptures": {
-            "0": { "name": "punctuation.quasi.element.end.js" }
+            "0": { "name": "punctuation.section.embedded.end.js" }
           },
           "patterns": [
             { "include": "#expression" }
