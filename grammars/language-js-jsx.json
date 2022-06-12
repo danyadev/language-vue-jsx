@@ -358,16 +358,16 @@
           "name": "meta.for.js",
           "begin": "(?<!\\.)\\s*+\\b(for)\\b\\s*(await)?\\b",
           "end": "\\s*(\\))",
-          "endCaptures": {
-            "1": { "name": "meta.brace.round.js" }
-          },
           "beginCaptures": {
             "1": { "name": "keyword.control.loop.js" },
             "2": { "name": "keyword.control.flow.js" }
           },
+          "endCaptures": {
+            "1": { "name": "meta.brace.round.js" }
+          },
           "patterns": [
             {
-              "begin": "\\s*+(\\()",
+              "begin": "\\s*(\\()",
               "end": "\\s*(?=\\))",
               "beginCaptures": {
                 "1": { "name": "meta.brace.round.js" }
@@ -860,6 +860,7 @@
             "1": { "name": "storage.type.const.js" }
           },
           "endCaptures": {
+            "1": { "name": "keyword.operator.of.js" },
             "3": { "name": "keyword.operator.assignment.js" }
           },
           "patterns": [
@@ -877,8 +878,10 @@
               }
             },
             {
-              "match": "\\.\\.\\.",
-              "name": "keyword.operator.spread.js"
+              "match": "(?<!\\.)\\s*(\\.\\.\\.)",
+              "captures": {
+                "1": { "name": "keyword.operator.spread.js" }
+              }
             },
             {
               "match": ",",
@@ -1008,11 +1011,11 @@
             "4": { "name": "meta.delimiter.property.period.js" },
             "5": { "name": "entity.name.tag.styledcss.js" },
             "6": { "name": "string.quoted.template.styled.start.js" },
-            "7": { "name": "punctuation.definition.quasi.begin.js" }
+            "7": { "name": "punctuation.definition.string.begin.js" }
           },
           "endCaptures": {
             "1": { "name": "string.quoted.template.styled.end.js" },
-            "2": { "name": "punctuation.definition.quasi.end.js" }
+            "2": { "name": "punctuation.definition.string.end.js" }
           },
           "patterns": [
             { "include": "source.css.styled" }
@@ -1029,11 +1032,11 @@
             "3": { "name": "meta.delimiter.property.period.js" },
             "4": { "name": "entity.name.tag.styledcss.js" },
             "5": { "name": "string.quoted.template.styled.start.js" },
-            "6": { "name": "punctuation.definition.quasi.begin.js" }
+            "6": { "name": "punctuation.definition.string.begin.js" }
           },
           "endCaptures": {
             "1": { "name": "string.quoted.template.styled.end.js" },
-            "2": { "name": "punctuation.definition.quasi.end.js" }
+            "2": { "name": "punctuation.definition.string.end.js" }
           },
           "patterns": [
             { "include": "source.css.styled" }
@@ -1060,11 +1063,11 @@
               "end": "\\s*((`))",
               "beginCaptures": {
                 "1": { "name": "string.quoted.template.styled.start.js" },
-                "2": { "name": "punctuation.definition.quasi.begin.js" }
+                "2": { "name": "punctuation.definition.string.begin.js" }
               },
               "endCaptures": {
                 "1": { "name": "string.quoted.template.styled.end.js" },
-                "2": { "name": "punctuation.definition.quasi.end.js" }
+                "2": { "name": "punctuation.definition.string.end.js" }
               },
               "patterns": [
                 { "include": "source.css.styled" }
@@ -1104,11 +1107,11 @@
               "end": "\\s*((`))",
               "beginCaptures": {
                 "1": { "name": "string.quoted.template.styled.start.js" },
-                "2": { "name": "punctuation.definition.quasi.begin.js" }
+                "2": { "name": "punctuation.definition.string.begin.js" }
               },
               "endCaptures": {
                 "1": { "name": "string.quoted.template.styled.end.js" },
-                "2": { "name": "punctuation.definition.quasi.end.js" }
+                "2": { "name": "punctuation.definition.string.end.js" }
               },
               "patterns": [
                 { "include": "source.css.styled" }
@@ -1139,11 +1142,11 @@
               "end": "\\s*((`))",
               "beginCaptures": {
                 "1": { "name": "string.quoted.template.styled.start.js" },
-                "2": { "name": "punctuation.definition.quasi.begin.js" }
+                "2": { "name": "punctuation.definition.string.begin.js" }
               },
               "endCaptures": {
                 "1": { "name": "string.quoted.template.styled.end.js" },
-                "2": { "name": "punctuation.definition.quasi.end.js" }
+                "2": { "name": "punctuation.definition.string.end.js" }
               },
               "patterns": [
                 { "include": "source.css.styled" }
@@ -1160,11 +1163,11 @@
           "beginCaptures": {
             "1": { "name": "entity.name.tag.js" },
             "2": { "name": "string.quoted.template.js" },
-            "3": { "name": "punctuation.definition.quasi.begin.js" }
+            "3": { "name": "punctuation.definition.string.begin.js" }
           },
           "endCaptures": {
             "1": { "name": "string.quoted.template.js" },
-            "2": { "name": "punctuation.definition.quasi.end.js" }
+            "2": { "name": "punctuation.definition.string.end.js" }
           },
           "patterns": [
             { "include": "#literal-quasi-embedded"},
@@ -1266,12 +1269,6 @@
             "1": { "name": "constant.other.object.key.js"},
             "2": { "name": "variable.other.constant.shorthandpropertyname.js"}
 
-          }
-        },
-        {
-          "match": "(?<=^|,|{)(?<!:|\\.)\\s*+(((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+))\\s*+(?=$|,|})",
-          "captures": {
-            "1": { "name": "variable.other.readwrite.shorthandpropertyname.js"}
           }
         }
       ]
@@ -1433,8 +1430,7 @@
           "applyEndPatternLast": 1,
           "beginCaptures": {
             "2": { "name": "keyword.operator.new.js" },
-            "3": { "name": "keyword.operator.private.js" },
-            "4": { "name": "variable.other.object.js" }
+            "3": { "name": "keyword.operator.private.js" }
           },
           "patterns": [
             { "include": "#square-brackets"},
@@ -1463,8 +1459,7 @@
           "applyEndPatternLast": 1,
           "beginCaptures": {
             "2": { "name": "keyword.operator.new.js" },
-            "3": { "name": "keyword.operator.private.js" },
-            "4": { "name": "variable.other.object.js" }
+            "3": { "name": "keyword.operator.private.js" }
           },
           "patterns": [
             { "include": "#square-brackets"},
@@ -1500,7 +1495,7 @@
           ]
         },
         {
-          "begin": "(?<!\\.)\\s*+\\b(decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|escape|eval|isFinite|isNaN|parseFloat|parseInt|unescape)\\b",
+          "begin": "(?<!\\.)\\s*+\\b(decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|escape|eval|isFinite|isNaN|parseFloat|parseInt|unescape|require)\\b",
           "end": "(?=.)",
           "applyEndPatternLast": 1,
           "beginCaptures": {
@@ -1556,14 +1551,6 @@
           "patterns": [
             { "include": "#round-brackets" }
           ]
-        },
-        {
-          "match": "(?<!\\.)\\s*+\\b(process)(?:(\\.)(stdout|stderr|stdin|argv|execPath|execArgv|env|exitCode|version|versions|config|pid|title|arch|platform|mainModule))?\\b",
-          "captures": {
-            "1": { "name": "support.variable.process.js" },
-            "2": { "name": "meta.delimiter.property.period.js" },
-            "3": { "name": "support.type.object.process.js" }
-          }
         },
         {
           "match": "(?<!\\.)\\s*+\\b(process)(?:(\\.)(abort|chdir|cwd|exit|getgid|setgid|getuid|setuid|setgroups|getgroups|initgroups|kill|memoryUsage|nextTick|umask|uptime|hrtime))?\\b",
@@ -2387,18 +2374,19 @@
         },
         {
           "comment": "e.g. obj.property",
-          "match": "(?<!\\.)\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)\\s*+(?=[\\[\\.])",
+          "match": "(?<!\\.)\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)\\s*+(?=[\\.])",
           "captures": {
-            "1": { "name": "keyword.operator.private.js"}
+            "1": { "name": "keyword.operator.private.js"},
+            "2": { "name": "variable.other.property.js", "comment": "object root" }
           }
         },
         {
           "comment": "e.g. obj.property",
           "name": "meta.property.object.js",
-          "match": "(?<=\\.)\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)",
+          "match": "(?<!\\.\\.\\.)(?<=\\.)\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)",
           "captures": {
             "1": { "name": "keyword.operator.private.js"},
-            "2": { "name": "variable.other.property.js" }
+            "2": { "name": "variable.other.property.js", "comment": "object property (including nested)" }
           }
         },
         {
@@ -3004,13 +2992,6 @@
             }
           },
           {
-            "comment": "custom primitive/var Types e.g. abc avoid abc(",
-            "match": "(?!\\s*\\b(if|switch|case|break|default|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield|type|declare|interface)\\b)(?!^)\\s*(?<=\\s|:|&|\\||<)([$_\\p{L}][$.\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}]*+)(?!\\s*+\\()",
-            "captures": {
-              "2": { "name": "support.type.primitive.flowtype" }
-            }
-          },
-          {
             "comment": "Type Unions |",
             "match": "\\s*+(\\|)(?<!{\\|)(?!}|>)",
             "captures": {
@@ -3559,10 +3540,10 @@
         "1": { "name": "text" },
         "2": { "name": "text" },
         "3": { "name": "keyword.operator.assignment.js"},
-        "4": { "name": "punctuation.definition.quasi.begin.js" }
+        "4": { "name": "punctuation.definition.string.begin.js" }
       },
       "endCaptures": {
-        "1": { "name": "punctuation.definition.quasi.end.js" }
+        "1": { "name": "punctuation.definition.string.end.js" }
       },
       "patterns": [
         {
