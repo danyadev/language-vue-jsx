@@ -844,13 +844,58 @@
     "literal-keyword-storage": {
       "patterns": [
         {
-          "begin": "(?<!\\.)\\s*+\\b(const|let|var)\\b",
+          "begin": "(?<!\\.)\\s*+\\b(let|var)\\b",
           "end": "(?=^\\s*[$_[:alpha:]][$_[:alnum:]]*:\\s*($|\\b(do|for|while)\\b))|\\s*(?=;|\\*/|\\b(if|switch|case|break|default|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield|type|declare|interface)\\b|\\)|})",
           "beginCaptures": {
             "1": { "name": "storage.type.js" }
           },
           "patterns": [
             { "include": "#flowtype-variable" }
+          ]
+        },
+        {
+          "begin": "(?<!\\.)\\s*+\\b(const)\\b",
+          "end": "(\\bof\\b|\\bin\\b)|(;)|(=)|(?<![,{])\\n",
+          "beginCaptures": {
+            "1": { "name": "storage.type.const.js" }
+          },
+          "patterns": [
+            {
+              "match": "([$_a-zA-Z][$_a-zA-Z0-9]*)\\s*(:)\\s*([$_a-zA-Z][$_a-zA-Z0-9]*)?",
+              "captures": {
+                "2": { "name": "keyword.operator.assignment.js" },
+                "3": { "name": "constant.other.js" }
+              }
+            },
+            {
+              "match": "([$_a-zA-Z][$_a-zA-Z0-9]*)",
+              "captures": {
+                "1": { "name": "constant.other.js" }
+              }
+            },
+            {
+              "match": "\\.\\.\\.",
+              "name": "keyword.operator.spread.js"
+            },
+            {
+              "match": ",",
+              "name": "meta.delimiter.object.comma.js"
+            },
+            {
+              "match": "\\(|\\)",
+              "name": "meta.brace.round.js"
+            },
+            {
+              "match": "{|}",
+              "name": "meta.brace.curly.js"
+            },
+            {
+              "match": "\\[|\\]",
+              "name": "meta.brace.square.js"
+            },
+            {
+              "include": "#comments"
+            }
           ]
         }
       ]
@@ -2430,7 +2475,7 @@
       "match": "\\s*+(\\#?)((?:[$_\\p{L}\\p{Nl}]|\\\\u\\h{4}|\\\\u{\\h+})(?:[$_\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}\\x{200C}\\x{200D}]|\\\\u\\h{4}|\\\\u{\\h+})*+)",
       "captures": {
         "1": { "name": "keyword.operator.private.js"},
-        "2": { "name": "variable.other.property.js" }
+        "2": { "name": "variable.other.readwrite.js" }
       }
     },
     "literal-variable-flowtype": {
