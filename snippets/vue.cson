@@ -1,0 +1,20 @@
+".text.html.vue":
+  "Vue Component":
+    "prefix": "template"
+    "body": """
+      <template>
+        $1
+      </template>
+
+      <script>
+      export default {
+        setup() {
+
+        }
+      };
+      </script>
+
+      <style>
+      </style>
+
+    """
