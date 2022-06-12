@@ -1,0 +1,11 @@
+{
+  "name": "language-vue",
+  "version": "1.0.0",
+  "description": "Vue component with JSX syntax support in Atom",
+  "repository": "https://github.com/danyadev/language-vue-jsx",
+  "license": "MIT",
+  "engines": {
+    "atom": "^1.15.0"
+  },
+  "dependencies": {}
+}
